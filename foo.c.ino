@@ -174,10 +174,7 @@ void Algorithm_update(void){
 
         case START_OF_PARK_SPACE:
             Serial.print("State: DETECT_PARK -> START_OF_PARK_SPACE");
-            if (Sensors_Current[3] >= PARK_WIDTH){
-                time_count += TIME_TICK;
-            }
-            else if (Sensors_Current[2] >= PARK_WIDTH){
+            if (Sensors_Current[3] >= PARK_WIDTH || Sensors_Current[2] >= PARK_WIDTH){
                 time_count += TIME_TICK;
             }
             else{
@@ -246,15 +243,18 @@ void Algorithm_update(void){
         case REVERSE_R_OUT:
             Serial.print("State: PARK_CAR -> REVERSE_R_OUT");
             SET_DC(REAR);
-            for(increment=0;increment< SENSORS_NUMBERS;increment++){
-                if (Sensors_Current[increment] <= MIN_OBSTACLE_SPACE){
-          //Sensors_Current[increment] = Sensors_GetReading(increment);
-          if (Sensors_Current[increment] <= MIN_OBSTACLE_SPACE){
-            SET_DC(STOP);
-            SET_SERVO(MID);
-            V1.park_car = MOVE_FWD;
-            break;
-          }
+            for(increment=0;increment< SENSORS_NUMBERS;increment++)
+            {
+                if (Sensors_Current[increment] <= MIN_OBSTACLE_SPACE)
+                {
+                    //Sensors_Current[increment] = Sensors_GetReading(increment);
+                    if (Sensors_Current[increment] <= MIN_OBSTACLE_SPACE)
+                    {
+                        SET_DC(STOP);
+                        SET_SERVO(MID);
+                        V1.park_car = MOVE_FWD;
+                        break;
+                    }
                 }
             }
             side_sensor_ratio = Sensors_Current[2]/Sensors_Current[3];

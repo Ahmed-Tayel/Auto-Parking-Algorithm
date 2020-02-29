@@ -3,12 +3,16 @@
 
 #include "algorithm.h"
 
+//DRIVE MOTOR PIN CONFIGURATION
 #define DC_PWM_PIN    7
 #define DC_DIR_PIN    5
 #define DC_SPEED_PWM  35
+
+//STEERING MOTOR PIN CONFIGURATION
 #define STEER_PWM_PIN    6
 #define STEER_DIR_PIN    4
 #define STEER_SPEED_PWM  120
+
 #define FRONT         0
 #define FRONT_DIR     HIGH
 #define REAR          1
@@ -22,7 +26,7 @@
 #define SCALE         1.2
 #define Delay_time_ms    650
 
-// Initialize sensors pins
+//INIT SENSOR PINS
 #define S0_TRIG     (40)
 #define S0_ECHO     (38)
 #define S1_TRIG     (36)

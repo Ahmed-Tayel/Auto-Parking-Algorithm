@@ -3,6 +3,7 @@
 
 #include "head.h"
 
+//CAR DEPENDENT VARIABLES
 #define PARK_LENGTH           (150)    //cm
 #define PARK_WIDTH            (60)     //cm
 #define CAR_VELOCITY          (10)    //cm/sec
